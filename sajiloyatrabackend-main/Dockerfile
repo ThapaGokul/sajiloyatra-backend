@@ -25,7 +25,9 @@ WORKDIR /app
 
 # Copy the .jar file from the 'build' stage
 # This wildcard copies the .jar and avoids name mismatches
-COPY --from=build /app/target/*.jar /app.jar
+COPY --from=build /app/target/*.jar app.jar
+
+RUN chmod 755 app.jar
 
 # Expose the port your Spring Boot app runs on (default 8080)
 EXPOSE 8080
