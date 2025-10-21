@@ -1,6 +1,6 @@
 # Stage 1: Build the application
-# Use a Maven-capable image that includes Java 17
-FROM maven:3.8-openjdk-17-slim AS build
+# Use a Maven image that includes Java 21
+FROM maven:3.9-eclipse-temurin-21 AS build
 
 # Set the working directory inside the container
 WORKDIR /app
@@ -18,7 +18,8 @@ RUN chmod +x mvnw
 RUN ./mvnw package -DskipTests
 
 # Stage 2: Create the final, lightweight runtime image
-FROM openjdk:17-slim-bullseye
+# Use a Java 21 runtime image
+FROM openjdk:21-slim-bullseye
 
 WORKDIR /app
 
